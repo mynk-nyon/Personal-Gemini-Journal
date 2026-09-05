@@ -1,109 +1,185 @@
-# Personal Gemini Journal
+<a name="readme-top"></a>
 
-## 1. Project Overview
-Personal Gemini Journal is a secure, authenticated, multi-user AI journal where every user's data is logically isolated. Users can reflect, brainstorm, and journal their thoughts with the help of Google's Gemini AI. The application automatically summarizes these sessions to extract themes, moods, and action items.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/YOUR_USERNAME/YOUR_REPO_NAME">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/120px-Google_%22G%22_logo.svg.png" alt="Logo" width="80" height="80">
+  </a>
 
-## 2. Features
-- **Secure Authentication:** Firebase Authentication ensures only logged-in users can access the journal.
-- **AI Journaling Assistant:** Multi-turn conversational interface powered by Gemini 1.5 Flash.
-- **Journal Intelligence:** Automatically extracts themes, moods, and action items from conversations using a low-temperature Gemini JSON schema.
-- **Strict Data Isolation:** Firestore Security Rules enforce that users can only read and write their own data.
-- **Production-Ready Security:** No exposed API keys; Gemini calls are routed through a secure Cloud Run backend middleware.
+<h3 align="center">Personal Gemini Journal</h3>
 
-## 3. Architecture
-The application uses a decoupled Client-Backend architecture in a single Next.js monolith:
-- **Frontend:** Next.js React client (App Router).
-- **Backend:** Next.js API Routes acting as a secure middleware.
-- **Database:** Google Cloud Firestore.
-- **AI:** Google Gemini API (via `@google/generative-ai`).
+  <p align="center">
+    A secure, authenticated multi-tenant AI journaling app built for the <strong>Accelerate AI with Cloud Run Ideathon</strong>.
+    <br />
+    <a href="https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/tree/main/docs"><strong>Explore the architecture docs »</strong></a>
+    <br />
+    <br />
+    <a href="YOUR_CLOUD_RUN_URL_HERE">View Live Demo</a>
+    ·
+    <a href="YOUR_DEMO_VIDEO_LINK_HERE">Watch Walkthrough Video</a>
+  </p>
+</div>
 
-*See `docs/ARCHITECTURE.md` for a detailed diagram.*
+<!-- TECH STACK BADGES -->
+<h3 align="center">🛠️ Tech Stack & Technologies</h3>
+<div align="center">
+  <p>
+    <img src="https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white" alt="Google Cloud" />
+    <img src="https://img.shields.io/badge/Firebase-%23039BE5.svg?style=for-the-badge&logo=firebase&logoColor=white" alt="Firebase" />
+    <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini API" />
+    <img src="https://img.shields.io/badge/Docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+    <img src="https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+  </p>
+</div>
 
-## 4. Security Model
-Security is an architectural property of this application:
-- Client input is always treated as untrusted.
-- Authorization relies on backend verification of Firebase ID tokens (JWT).
-- `GEMINI_API_KEY` is securely injected via Google Cloud Secret Manager.
-*See `docs/SECURITY.md` and `docs/SECURITY-CHECKLIST.md` for complete details.*
+<br />
 
-## 5. Tech Stack
-- **Framework:** Next.js 15 (TypeScript, Tailwind CSS)
-- **Auth:** Firebase Authentication
-- **Database:** Cloud Firestore
-- **AI:** Google Gemini API
-- **Infrastructure:** Google Cloud Run, Secret Manager
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>📖 Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#-about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#-ideathon-architecture">Ideathon Architecture</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#-getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#-prerequisites">Prerequisites</a></li>
+        <li><a href="#-installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#-cloud-run-deployment">Cloud Run Deployment</a></li>
+    <li><a href="#-security-model">Security Model</a></li>
+    <li><a href="#-license">License</a></li>
+    <li><a href="#-contact">Contact</a></li>
+  </ol>
+</details>
 
-## 6. Local Development
-1. Clone the repository and install dependencies:
-   ```bash
+<!-- ABOUT THE PROJECT -->
+## 🚀 About The Project
+
+[![Product Name Screen Shot][product-screenshot]](YOUR_DEMO_VIDEO_LINK_HERE)
+*(Add a screenshot of your chat UI here and link it to your video)*
+
+**Personal Gemini Journal** is a production-ready web application where users can reflect, brainstorm, and journal their thoughts with the help of Google's Gemini AI. 
+
+Unlike standard demo apps, this project was built with a **Security-First** mindset. It features strict data isolation, zero-trust backend interactions, and protected API boundaries to ensure user data remains entirely private.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 🏗️ Ideathon Architecture
+
+This project strictly follows the requirements for the **Accelerate AI with Cloud Run Ideathon**:
+
+* 🔐 **Firebase Authentication:** Handles secure user sign-ins and identity verification.
+* ☁️ **Cloud Run:** Hosts the Next.js application in a scalable, serverless container, acting as a secure middleware that prevents API key leakage.
+* 🧠 **Gemini API (AI Studio):** Powers both a multi-turn conversational reflection assistant and a background *Journal Intelligence engine* that extracts themes, moods, and action items via structured JSON.
+* 🗄️ **Cloud Firestore:** Persists the structured journal entries, utilizing strict `firestore.rules` to guarantee cryptographic data isolation between users.
+* 🔑 **Secret Manager:** Ensures the `GEMINI_API_KEY` is never hardcoded or exposed to the frontend.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+## 💻 Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### 📋 Prerequisites
+
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+* A Google Cloud Project with billing enabled
+* A Firebase Project
+* A Gemini API Key from Google AI Studio
+
+### 🔧 Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   cd YOUR_REPO_NAME
+   ```
+2. Install NPM packages
+   ```sh
    npm install
    ```
-2. Copy the environment variables template:
-   ```bash
+3. Set up your environment variables
+   ```sh
    cp .env.example .env.local
    ```
-3. Populate `.env.local` with your Firebase configuration and Gemini API Key.
-4. Run the development server:
-   ```bash
+4. Enter your API keys in `.env.local`
+   ```env
+   GEMINI_API_KEY="ENTER YOUR API KEY"
+   NEXT_PUBLIC_FIREBASE_API_KEY="ENTER YOUR FIREBASE API KEY"
+   # ... (fill in the rest of your Firebase config)
+   ```
+5. Run the development server
+   ```sh
    npm run dev
    ```
 
-## 7. Firebase Setup
-1. Create a Firebase Project in the Firebase Console.
-2. Enable **Authentication** (Email/Password provider).
-3. Register a Web App to get your Firebase config.
-4. Add the config to `NEXT_PUBLIC_FIREBASE_*` in `.env.local`.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 8. Firestore Setup
-1. In the Firebase Console, create a Firestore Database.
-2. Deploy the secure rules included in this repo:
-   ```bash
-   firebase deploy --only firestore:rules
+<!-- DEPLOYMENT -->
+## ☁️ Cloud Run Deployment
+
+To deploy this securely to Google Cloud Run:
+
+1. **Create your secret in Secret Manager:**
+   ```sh
+   echo -n "YOUR_GEMINI_API_KEY" | gcloud secrets create GEMINI_API_KEY --data-file=-
    ```
-
-## 9. Secret Manager Setup
-1. In Google Cloud Console, enable **Secret Manager API**.
-2. Create a secret named `GEMINI_API_KEY`.
-3. Ensure your Cloud Run service account has the `Secret Manager Secret Accessor` role.
-
-## 10. Gemini Setup
-1. Obtain an API key from Google AI Studio.
-2. Save it in Secret Manager for production, and in `.env.local` for local development.
-
-## 11. Cloud Run Deployment
-1. Authenticate with Google Cloud CLI:
-   ```bash
-   gcloud auth login
-   ```
-2. Deploy to Cloud Run:
-   ```bash
+2. **Deploy via gcloud CLI:**
+   ```sh
    gcloud run deploy personal-gemini-journal \
      --source . \
      --set-secrets="GEMINI_API_KEY=GEMINI_API_KEY:latest" \
-     --allow-unauthenticated
+     --set-env-vars="NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_KEY,NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_PROJECT" \
+     --allow-unauthenticated \
+     --region=us-central1
    ```
 
-## 12. Environment Variables
-See `.env.example` for the required keys. Do NOT commit `.env.local`.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 13. Testing
-- **Auth:** Verify unauthenticated users receive 401s on `/api/chat`.
-- **Isolation:** Verify user A cannot read user B's documents via Firestore Rules testing.
-- **Prompt Injection:** Ensure Gemini refuses instructions to leak system prompts.
+<!-- SECURITY MODEL -->
+## 🔒 Security Model
 
-## 14. Security Considerations
-Review the `docs/SECURITY-CHECKLIST.md` prior to any production deployment. 
+Security is an architectural property of this application:
+* **Zero-Trust Client:** Client input is always treated as untrusted.
+* **Backend Token Verification:** Authorization relies on backend verification of Firebase ID tokens (JWT) via the Firebase Admin SDK.
+* **Data Isolation:** `firestore.rules` enforce that `request.auth.uid == userId` for the path `users/{userId}/journalEntries/...`.
 
-## 15. Screenshots
-*(Placeholder for UI screenshots)*
+Please see the [`docs/`](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/tree/main/docs) directory for the complete Threat Model and Security Checklist.
 
-## 16. Demo URL
-*(Placeholder for Cloud Run URL once deployed)*
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 17. Project Limitations
-- Uses fixed window/in-memory rate limiting placeholder. A production app should use Redis for distributed rate-limiting.
-- Currently lacks a comprehensive E2E testing suite (Cypress/Playwright).
+<!-- LICENSE -->
+## 📄 License
 
-## 18. Future Improvements
-- **Semantic Journal Search:** Implement vector embeddings for journal entries allowing users to semantically search past thoughts.
-- **App Check:** Integrate Firebase App Check to prevent unauthorized clients from hitting the backend API.
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## 📫 Contact
+
+Your Name - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+
+Project Link: [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[product-screenshot]: https://via.placeholder.com/800x400.png?text=Add+Screenshot+Here
