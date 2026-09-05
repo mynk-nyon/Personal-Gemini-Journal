@@ -161,7 +161,7 @@ Security is an architectural property of this application:
 * **Backend Token Verification:** Authorization relies on backend verification of Firebase ID tokens (JWT) via the Firebase Admin SDK.
 * **Data Isolation:** `firestore.rules` enforce that `request.auth.uid == userId` for the path `users/{userId}/journalEntries/...`.
 
-Please see the [`docs/`](https://github.com/mynk-nyon/Personal-Gemini-Journal?tab=security-ov-file) directory for the complete Threat Model and Security Checklist.
+Please see the [`docs/`](https://github.com/mynk-nyon/Personal-Gemini-Journal/blob/main/docs/SECURITY-CHECKLIST.md) directory for the complete Threat Model and Security Checklist.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
